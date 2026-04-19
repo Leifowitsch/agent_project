@@ -30,7 +30,7 @@ def get_files_info(working_directory, directory= "."):
 
         return formated_items
     except:
-        return f"Error: something went wrong getting the directory infos"
+        return f"Error: something went wrong getting the directory infos of {directory}"
 
 
 
