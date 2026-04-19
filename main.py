@@ -43,7 +43,6 @@ def main():
     # Holt mithilfe des API keys den client den wir brauchen
     client = genai.Client(api_key=api_key)
 
-    function_results = []
 
     for i in range(20):
 
@@ -63,40 +62,39 @@ def main():
         for cand in response.candidates:
             messages.append(cand.content)
 
-        
 
         if response.function_calls is None:
+            if args.verbose:
+                print(f"User prompt: {args.user_prompt}")
+                print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
+                print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
+                print()
             print(f"Gemini: {response.text}")
             return
         
         function_call_result = call_function(response.function_calls[0])
         if function_call_result.parts is not None:
-            function_results.append(function_call_result)
             function_part_0 = function_call_result.parts[0].function_response
             if function_part_0 is None:
                 raise Exception("EROOR: function result part [0] is None")
             if function_part_0.response is None:
                 raise Exception("EROOR: function result is None")
-            function_results.append(function_call_result.parts[0])       
         else:
             raise Exception("ERROR: function call has no Parts")
         
-        messages.append(types.Content(role="user", parts=function_results))
+        new_function_message = types.Content(
+            role="tool", # Oder "user", je nach SDK Version, meist "tool" für Responses
+            parts=[function_call_result.parts[0]]
+        )
+        
+        messages.append(new_function_message)
+        
 
         if i == 19:
             print("Nicht gescahfft in Anzahl von iterationen")
             sys.exit(1)
 
-    # Wenn --verbose angegeben wird drucke Metadaten dazu
-    if args.verbose:
-        print(f"User prompt: {args.user_prompt}")
-        print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
-        print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
-        print(f"-> {function_call_result.parts[0].function_response.response}")
-        print()
 
-
-    print(response.text)
 
     
 

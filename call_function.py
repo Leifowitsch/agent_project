@@ -7,7 +7,7 @@ from functions.write_file import write_file
 
 
 def call_function(function_call, verbose=False):
-    if verbose:
+    if verbose == True:
         print(f"Calling function: {function_call.name}({function_call.args})")
     print(f" - Calling function: {function_call.name}")
 

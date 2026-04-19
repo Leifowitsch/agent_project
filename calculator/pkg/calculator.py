@@ -3,8 +3,8 @@
 class Calculator:
     def __init__(self):
         self.operators = {
-            "+": lambda a, b: a + b,
             "-": lambda a, b: a - b,
+            "+": lambda a, b: a + b,
             "*": lambda a, b: a * b,
             "/": lambda a, b: a / b,
         }
@@ -54,7 +54,7 @@ class Calculator:
 
         operator = operators.pop()
         if len(values) < 2:
-            raise ValueError(f"not enough operands for operator {operator}")
+            return
 
         b = values.pop()
         a = values.pop()
