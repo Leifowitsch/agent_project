@@ -11,4 +11,4 @@ wheels/
 
 # Privates
 TUTORIAL.md
-apikey.env
+.env
