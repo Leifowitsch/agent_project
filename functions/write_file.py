@@ -1,4 +1,5 @@
 import os
+from google.genai import types
 
 def write_file(working_directory, file_path, content):
     try:
@@ -30,3 +31,22 @@ def write_file(working_directory, file_path, content):
         return f'Successfully wrote to "{target_file}" ({len(content)} characters written)'
     except:
         return f"Error: something went wrong when wanting to rewrite {file_path}"
+    
+
+schema_write_file = types.FunctionDeclaration(
+        name="write_file",
+        description="rewrites a the file u give it with the content u attach",
+        parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="the file path from the file u wanna rewrite relative to the working directory",
+            ),
+            "content":types.Schema(
+                type=types.Type.STRING,
+                description="Content is the content you wanna rewrite the file with",
+            )
+        },
+    ),
+)

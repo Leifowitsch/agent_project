@@ -1,5 +1,6 @@
 import os
 import subprocess
+from google.genai import types
 
 def run_python_file(working_directory, file_path, args=None):
     try:
@@ -44,3 +45,20 @@ def run_python_file(working_directory, file_path, args=None):
 
 
 
+schema_run_python_file = types.FunctionDeclaration(
+        name="run_python_file",
+        description="Runs a specific python file relative of the working directory, providing the stdout and stderr",
+        parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="the file path from the file u wanna run relative to the working directory",
+            ),
+            "args":types.Schema(
+                type=types.Type.STRING,
+                description="the addtionoal arguments u could put in the terminal behind the name of file itself, such as flags for example",
+            )
+        },
+    ),
+)

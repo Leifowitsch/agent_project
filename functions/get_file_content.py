@@ -1,5 +1,10 @@
 import os
 from config import MAX_READ_CHARS
+from google.genai import types
+
+
+
+
 
 def get_files_content(working_directory, file_path):
 
@@ -10,6 +15,7 @@ def get_files_content(working_directory, file_path):
 
         # Fügt zu dem working dir unser ziel dir hinzu damit wir einen absoluten path haben in den Ordner in den wir gerade wollen bspw. /user/lepucp/agent_project/calculator -> /user/lepucp/agent_project/calculator/pkg
         target_file = os.path.normpath(os.path.join(working_directory_abs, file_path))
+
 
 
 
@@ -29,3 +35,19 @@ def get_files_content(working_directory, file_path):
 
     except:
         return f"Error: something went wrong reading the contents of this file {file_path}"
+
+
+
+schema_get_files_content = types.FunctionDeclaration(
+        name="get_file_content",
+        description="Gives out the content of the file which is in file_path as a string",
+        parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="the file path from the file you wanna get the content from, relative to the working directory",
+            )
+        },
+    ),
+)
