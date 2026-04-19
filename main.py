@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 import argparse
+from config import SYSTEM_PROMPT
 
 def main():
 
@@ -27,8 +28,13 @@ def main():
     # Holt mithilfe des API keys den client den wir brauchen
     client = genai.Client(api_key=api_key)
 
-    # Erstellt eine Antwort basierend auf Message, welche basierend auf dem "user_prompt" in der Konsole ist / Gibt einen Fehler aus wenn keine Tokens verwendet wurden
-    response = client.models.generate_content(model="gemini-2.5-flash", contents=messages)
+    # Erstellt eine Antwort basierend auf Message, welche basierend auf dem "user_prompt" in der Konsole ist / Gibt einen Fehler aus wenn keine Tokens verwendet wurden. Gibt außerdem ein System/Verhaltens - Prompt an
+    response = client.models.generate_content(
+                        model="gemini-2.5-flash",
+                        contents=messages,
+                        config=types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT))
+    
+
     if response.usage_metadata.prompt_token_count is None or response.usage_metadata.candidates_token_count is None:
         raise RuntimeError("Keine Tokens vergeben")
     
