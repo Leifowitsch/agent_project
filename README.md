@@ -6,7 +6,7 @@ An autonomous decision-making engine built with Python, focusing on **Functional
 
 ## 🚀 Overview
 
-This project marks a significant milestone in my journey toward AI development. Moving away from simple procedural scripts, I implemented an agent that perceives its environment and makes autonomous choices based on a set of predefined rules and functional logic.
+I built this autonomous agent to practice functional programming, system architecture, and API integration. Instead of writing simple procedural scripts, I wanted to build a system that makes autonomous choices based on logical rules.
 
 ### Key Features
 * **Autonomous Logic:** Independent decision-making without hard-coded "if-else" spaghetti.
