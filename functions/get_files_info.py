@@ -19,9 +19,9 @@ def get_files_info(working_directory, directory= "."):
 
         #  Schaut ob der Path der angegeben wurde ein valider ist, wenn nicht -> Fehlermeldung
         if not valid_target_dir:
-            return f'Error: Cannot list "{target_dir}" as it is outside the permitted working directory'
+            return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
         if not os.path.isdir(target_dir):
-            return f'Error: "{target_dir}" is not a directory'
+            return f'Error: "{directory}" is not a directory'
         
         # Gibt die metadaten von den Datein in dem Zielordner an
         formated_items = ""
