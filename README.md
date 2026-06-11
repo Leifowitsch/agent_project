@@ -41,10 +41,10 @@ This project uses `uv` for Python package management.
 
 ```bash
 # Clone the repository
-git clone [https://github.com/DEIN_GITHUB_NAME/ai-agent.git](https://github.com/DEIN_GITHUB_NAME/ai-agent.git)
+git clone [https://github.com/Leifowitsch/agent_project.git](https://github.com/Leifowitsch/agent_project.git)
 
 # Navigate to the directory
-cd ai-agent
+cd agent_project
 
 # Install dependencies and run the agent
 uv run main.py
