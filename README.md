@@ -1,50 +1,57 @@
-# 🤖 Autonomous AI Agent
+# AI Agent Project
 
-An autonomous decision-making engine built with Python, focusing on **Functional Programming** principles and robust **state management**. This agent is designed to navigate complex environments, manage resources, and achieve goals through logical reasoning.
+A small Python project for experimenting with LLM-based agents, tool calling and basic project-file interaction.
 
----
+The goal of this project was to understand how an AI agent can use predefined functions to inspect, read, modify and run files inside a project folder. It is not meant to be a production-ready coding agent, but a learning project for API integration, tool execution and structured Python development.
 
-## 🚀 Overview
+## What it does
 
-I built this autonomous agent to practice functional programming, system architecture, and API integration. Instead of writing simple procedural scripts, I wanted to build a system that makes autonomous choices based on logical rules.
+The agent can work with a limited set of tools, such as:
 
-### Key Features
-* **Autonomous Logic:** Independent decision-making without hard-coded "if-else" spaghetti.
-* **Functional Core:** Heavy use of **Pure Functions** and **Immutability** to ensure the agent's behavior is predictable and bug-free.
-* **State Machine Architecture:** Efficiently tracks the agent's status, goals, and environmental changes.
-* **Recursive Problem Solving:** Leverages recursion to handle complex, nested decision trees.
+- listing files and directories
+- reading file contents
+- writing or modifying files
+- running Python files
+- using function calls to decide which tool should be executed
 
----
+The project is built around the idea that the language model should not directly access the system. Instead, it can only call specific Python functions that are defined in the project.
 
-## 🛠 Tech Stack
+## Why I built it
 
-* **Language:** Python 3.13
-* **Paradigm:** Functional Programming (FP) & Object-Oriented Programming (OOP)
-* **Environment:** Linux (WSL2)
-* **Tools:** `uv` for lightning-fast dependency management, `Git` for version control.
+I built this project to better understand how AI coding agents work on a basic level.
 
----
+While using tools like ChatGPT or Codex, I wanted to learn what happens behind the scenes: how prompts are structured, how function calls are handled, how tool outputs are passed back to the model, and how a project can be organized so that this process stays understandable.
 
-## 🧠 Deep Dive: What I Learned
+## Tech stack
 
-Building this agent in a single day was an intense challenge that solidified several high-level concepts:
+- Python 3
+- Google GenAI / Gemini API
+- `uv`
+- `pyproject.toml`
+- `.env` configuration
+- `pytest`
+- Git / GitHub
 
-1.  **Declarative vs. Imperative:** I learned to focus on *what* the agent should achieve rather than just *how* to loop through commands.
-2.  **Side-Effect Management:** By using functional principles, I kept the "brain" of the agent separate from the "actions," making the code much easier to test and scale.
-3.  **Data Structures:** Implemented efficient ways to store and retrieve the agent's knowledge base.
+## Main concepts
 
----
+This project helped me practice:
 
-## ⚙️ Installation & Usage
+- API integration with an LLM provider
+- function calling / tool calling
+- separating configuration from project logic
+- reading and writing files safely through controlled functions
+- basic test structure with `pytest`
+- organizing a Python project across multiple files
 
-This project uses `uv` for Python package management.
+## Project structure
 
-```bash
-# Clone the repository
-git clone [https://github.com/Leifowitsch/agent_project.git](https://github.com/Leifowitsch/agent_project.git)
+The project is organized into separate modules for configuration, function execution and agent logic. The exact structure may change while I continue improving the project.
 
-# Navigate to the directory
-cd agent_project
-
-# Install dependencies and run the agent
-uv run main.py
+```text
+agent_project/
+├── main.py
+├── config/
+├── functions/
+├── tests/
+├── pyproject.toml
+└── README.md
